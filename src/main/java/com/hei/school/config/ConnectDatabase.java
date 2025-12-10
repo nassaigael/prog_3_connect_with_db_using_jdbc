@@ -1,4 +1,4 @@
-package com.fizanakara.config;
+package com.hei.school.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

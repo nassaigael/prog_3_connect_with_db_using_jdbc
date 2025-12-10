@@ -1,17 +1,39 @@
-package com.fizanakara;
+package com.hei.school;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import com.hei.school.model.Category;
+import com.hei.school.model.Product;
+import com.hei.school.service.Dataretriever;
+
+import java.sql.SQLException;
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args) throws SQLException {
+        Dataretriever d = new Dataretriever();
+        Main m = new Main();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        //getAllCategory
+        System.out.println("============ALL CATEGORY============");
+        m.testGetAllCategories(d);
+
+        //getProductList
+        System.out.println("============GET PRODUCT LIST============");
+        m.testGetProductList(d, 1, 10);
+        m.testGetProductList(d, 1, 5);
+        m.testGetProductList(d, 1, 3);
+        m.testGetProductList(d, 2, 2);
+
+
+    }
+
+    public void testGetAllCategories(Dataretriever d) throws SQLException {
+        List<Category> c = d.getAllCategories();
+        c.forEach(System.out::println);
+        System.out.println();
+    }
+    public void testGetProductList(Dataretriever d, int page, int size) throws SQLException {
+        List<Product> p = d.getProductList(page, size);
+        p.forEach(System.out::println);
+        System.out.println();
     }
 }
