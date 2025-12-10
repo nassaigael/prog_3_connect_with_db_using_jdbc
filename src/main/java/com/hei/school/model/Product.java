@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Product {
-    private  int id;
-    private  String name;
-    private  double price;
-    private  Instant creationDatetime;
+    private int id;
+    private String name;
+    private double price;
+    private Instant creationDatetime;
     private List<Category> category = new ArrayList<>();
 
     public Product(int id, String name, double price, Instant creationDatetime) {
@@ -69,6 +69,7 @@ public class Product {
                 .stream()
                 .map(Category::getName)
                 .collect(Collectors.joining(", "));
-        return String.format("Product { id = %d, name = %s, price = %.2f, creation_datetime = %s, categories=[%s] }", id, name, price, creationDatetime, categoryName);
+        return String.format("Product { id = %d, name = %s, price = %.2f, creation_datetime = %s, categories=[%s] }",
+                id, name, price, creationDatetime, categoryName);
     }
 }

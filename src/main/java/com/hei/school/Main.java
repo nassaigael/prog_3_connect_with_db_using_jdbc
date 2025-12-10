@@ -17,7 +17,7 @@ public class Main {
         m.testGetAllCategories(d);
 
         //getProductList
-        System.out.println("============GET PRODUCT LIST============");
+        System.out.println("============GET PRODUCT LIST ============");
         m.testGetProductList(d, 1, 10);
         m.testGetProductList(d, 1, 5);
         m.testGetProductList(d, 1, 3);

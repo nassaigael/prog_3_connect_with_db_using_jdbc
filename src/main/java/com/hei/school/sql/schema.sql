@@ -2,7 +2,7 @@ create table Product (
     id serial primary key,
     name varchar(250) not null,
     price numeric(10, 2) not null,
-    creation_datetime timestamp not null
+    creation_datetime timestamp not null default current_timestamp
 );
 
 create table Product_category(

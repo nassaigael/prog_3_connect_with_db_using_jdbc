@@ -17,14 +17,14 @@ public class Dataretriever {
         List<Category> result = new ArrayList<>();
         String request = "select id, name from product_category order by id asc";
 
-        try{
+        try {
             DBConnection dbConnection = new DBConnection();
             PreparedStatement ps = dbConnection.getDBConnection().prepareStatement(request);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                result.add(new Category(id,name));
+                result.add(new Category(id, name));
             }
 
         } catch (SQLException e) {
@@ -37,13 +37,13 @@ public class Dataretriever {
         List<Product> result = new ArrayList<>();
         int offset = (page - 1) * size;
         String request = "select id, name, price, creation_datetime from Product order by id limit ? offset ?";
-        try{
+        try {
             DBConnection dbc = new DBConnection();
             PreparedStatement ps = dbc.getDBConnection().prepareStatement(request);
             ps.setInt(1, size);
             ps.setInt(2, offset);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
@@ -61,16 +61,15 @@ public class Dataretriever {
     public void loadCategoriesForProduct(Product product) throws SQLException {
         String request = "select id, name from Product_category where product_id = ? order by id asc";
         DBConnection dbc = new DBConnection();
-        try(
+        try (
                 Connection connection = dbc.getDBConnection();
-                PreparedStatement ps = connection.prepareStatement(request);
-                ){
+                PreparedStatement ps = connection.prepareStatement(request);) {
             ps.setInt(1, product.getId());
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                product.addCategory(new Category(id,name));
+                product.addCategory(new Category(id, name));
             }
         }
     }
